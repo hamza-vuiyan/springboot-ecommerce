@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Panel</title>
+</head>
+<body>
+
+<h2>Add Product</h2>
+
+<input type="text" id="name" placeholder="Name"><br><br>
+<input type="text" id="description" placeholder="Description"><br><br>
+<input type="number" id="price" placeholder="Price"><br><br>
+<input type="number" id="stock" placeholder="Stock"><br><br>
+<input type="text" id="imageUrl" placeholder="Image URL"><br><br>
+
+<button onclick="addProduct()">Save Product</button>
+
+
+<h2>Product List</h2>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Stock</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody id="productTableBody"></tbody>
+</table>
+
+
+
+<script src="/js/admin.js"></script>
+
+</body>
+</html>

@@ -27,4 +27,22 @@ public class ProductService {
     public Product getProductById(Long id) {
         return productRepository.findById(id).orElse(null);
     }
+
+
+    public Product updateProduct(Long id, Product newProduct) {
+        Product product = productRepository.findById(id).orElse(null);
+
+        if (product != null) {
+            product.setName(newProduct.getName());
+            product.setDescription(newProduct.getDescription());
+            product.setPrice(newProduct.getPrice());
+            product.setStock(newProduct.getStock());
+            product.setImageUrl(newProduct.getImageUrl());
+
+            return productRepository.save(product);
+        }
+
+        return null;
+    }
+    
 }
