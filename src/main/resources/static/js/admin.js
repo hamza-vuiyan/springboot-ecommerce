@@ -1,5 +1,30 @@
 let editProductId = null; // global variable
 
+function loadProducts() {
+    fetch('/api/admin/products')
+        .then(response => response.json())
+        .then(products => {
+            let table = document.getElementById("productTableBody");
+            table.innerHTML = "";
+
+            products.forEach(product => {
+                table.innerHTML += `
+                <tr>
+                    <td>${product.id}</td>
+                    <td><img src="${product.imageUrl}" width="80"></td>
+                    <td>${product.name}</td>
+                    <td>${product.price}</td>
+                    <td>${product.stock}</td>
+                    <td>
+                        <button onclick="editProduct(${product.id})">Edit</button>
+                        <button onclick="deleteProduct(${product.id})">Delete</button>
+                    </td>
+                </tr>
+                `;
+            });
+        });
+}
+
 function addProduct() {
     const product = {
         name: document.getElementById("name").value,
@@ -41,30 +66,6 @@ function addProduct() {
             loadProducts(); // refresh table
         });
 }
-function loadProducts() {
-
-    fetch('/api/admin/products')
-        .then(response => response.json())
-        .then(products => {
-            let table = document.getElementById("productTableBody");
-            table.innerHTML = "";
-
-            products.forEach(product => {
-                table.innerHTML += `
-                <tr>
-                    <td>${product.id}</td>
-                    <td>${product.name}</td>
-                    <td>${product.price}</td>
-                    <td>${product.stock}</td>
-                    <td>
-                        <button onclick="editProduct(${product.id})">Edit</button>
-                        <button onclick="deleteProduct(${product.id})">Delete</button>
-                    </td>
-                </tr>
-                `;
-            });
-        });
-}
 
 
 function editProduct(id) {
@@ -91,5 +92,6 @@ function deleteProduct(id) {
 }
 
 window.onload = function() {
-    loadProducts();
+    loadProducts(); // load products without "Add to Cart" button
 };
+
