@@ -1,23 +1,3 @@
-function register() {
-    const customer = {
-        name: document.getElementById("regName").value,
-        email: document.getElementById("regEmail").value,
-        password: document.getElementById("regPassword").value
-    };
-
-    fetch('/api/customer/register', {
-        method: 'POST',
-        headers: {'Content-Type':'application/json'},
-        body: JSON.stringify(customer)
-    })
-        .then(response => response.json())
-        .then(data => {
-            alert("Registration successful! Please login.");
-            console.log(data);
-        });
-}
-
-
 function login() {
     const user = {
         email: document.getElementById("loginEmail").value,
@@ -39,3 +19,5 @@ function login() {
         })
         .catch(err => alert(err.message));
 }
+
+loadProducts("productList", true);
