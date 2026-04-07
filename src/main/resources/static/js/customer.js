@@ -1,3 +1,15 @@
+const role = localStorage.getItem("role");
+
+if(role !== "CUSTOMER" && role !== "ADMIN") {
+    alert("Please login first");
+    window.location.href = "/index.html";
+}
+
+function logout() {
+    localStorage.clear();
+    window.location.href = "/index.html";
+}
+
 window.onload = function() {
     loadProducts("productList", true);
 };

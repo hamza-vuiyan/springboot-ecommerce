@@ -14,6 +14,9 @@ function login() {
             return response.json();
         })
         .then(data => {
+            localStorage.setItem("userId", data.id);
+            localStorage.setItem("role", data.role);
+
             if(data.role === "ADMIN") window.location.href = "/admin.html";
             else window.location.href = "/customer.html";
         })

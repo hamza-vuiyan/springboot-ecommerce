@@ -1,4 +1,15 @@
 let editProductId = null; // global variable
+const role = localStorage.getItem("role");
+
+if(role !== "ADMIN") {
+    alert("Access denied");
+    window.location.href = "/index.html";
+}
+
+function logout() {
+    localStorage.clear();
+    window.location.href = "/index.html";
+}
 
 function loadProducts() {
     fetch('/api/admin/products')
