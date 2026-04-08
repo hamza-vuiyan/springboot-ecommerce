@@ -1,53 +1,32 @@
-const role = localStorage.getItem("role");
-
-if(role !== "CUSTOMER" && role !== "ADMIN") {
-    alert("Please login first");
-    window.location.href = "/index.html";
-}
-
-function goToProfile() {
-    // Save current customerId in localStorage (already stored at login)
-    const customerId = localStorage.getItem('userId');
-    if (!customerId) {
-        alert("Please login first!");
-        window.location.href = "/index.html";
-        return;
-    }
-
-    // Redirect to profile page
-    window.location.href = `/profile.html?customerId=${customerId}`;
-}
-
-
 window.onload = function() {
     loadProducts("productList", true);
 };
 
+const role = localStorage.getItem("role");
+
+// Check if user is logged in
+const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+if (!loggedInUser || (loggedInUser.role !== "CUSTOMER" && loggedInUser.role !== "ADMIN")) {
+    alert("Please login first");
+    window.location.href = "/login.html";
+}
+
+const customerId = loggedInUser.id;
+
 
 function addToCart(productId) {
-    // Get customerId from URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const customerId = urlParams.get('customerId');
 
-    if (!customerId) {
-        alert("Please login first!");
-        window.location.href = "/index.html";
-        return;
-    }
-
-    // Call backend API (quantity defaults to 1)
     fetch(`/api/cart/add/${customerId}/${productId}`, {
-        method: 'POST'
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ quantity: 1 }) // default 1 item
     })
         .then(res => {
-            if (!res.ok) throw new Error("Failed to add product to cart");
+            if (!res.ok) throw new Error("Failed to add to cart");
             return res.json();
         })
-        .then(cart => {
-            alert(`Product ${productId} added to cart!`);
+        .then(data => {
+            alert("Product added to cart!");
         })
-        .catch(err => {
-            console.error(err);
-            alert(err.message);
-        });
+        .catch(err => alert(err.message));
 }

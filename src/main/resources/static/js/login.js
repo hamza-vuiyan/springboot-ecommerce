@@ -10,18 +10,18 @@ function login() {
         body: JSON.stringify(user)
     })
         .then(response => {
-            if(!response.ok) throw new Error('Invalid credentials');
+            if (!response.ok) throw new Error('Invalid credentials');
             return response.json();
         })
         .then(data => {
-            localStorage.setItem("userId", data.id);
-            localStorage.setItem("role", data.role);
+            // Save entire user in localStorage
+            localStorage.setItem("loggedInUser", JSON.stringify(data));
 
+            // Redirect based on role
             if (data.role === "ADMIN") {
                 window.location.href = "/admin.html";
             } else {
-                // append customerId in URL
-                window.location.href = `/customer.html?customerId=${data.id}`;
+                window.location.href = "/customer.html";
             }
         })
         .catch(err => alert(err.message));

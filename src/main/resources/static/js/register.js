@@ -14,7 +14,7 @@ function register() {
         .then(data => {
             alert("Registration successful! Please login.");
             setTimeout(() => {
-                window.location.href = "/index.html";
+                window.location.href = "/login.html";
             }, 1000);
             console.log(data);
         });

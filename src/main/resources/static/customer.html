@@ -2,12 +2,20 @@
 <html>
 <head>
     <title>Shop</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 
-<nav style="border-bottom:1px solid #ccc; padding:10px;">
-    <span>Welcome!</span>
-    <button onclick="goToProfile()" style="float:right;">Profile</button>
+<!-- Navbar Container -->
+<!-- Navbar -->
+<nav class="navbar">
+    <div class="navbar-left">
+        <a href="/customer.html">Home</a>
+        <a href="/profile.html">Profile</a>
+    </div>
+    <div class="navbar-right">
+        <input type="text" id="searchInput" placeholder="Search...">
+    </div>
 </nav>
 
 <div id="productList"></div>

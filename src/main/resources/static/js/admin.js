@@ -3,12 +3,12 @@ const role = localStorage.getItem("role");
 
 if(role !== "ADMIN") {
     alert("Access denied");
-    window.location.href = "/index.html";
+    window.location.href = "/login.html";
 }
 
 function logout() {
     localStorage.clear();
-    window.location.href = "/index.html";
+    window.location.href = "/login.html";
 }
 
 function loadProducts() {
