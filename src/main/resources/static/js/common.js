@@ -19,3 +19,13 @@ function loadProducts(containerId, showButton = true) {
             });
         });
 }
+
+// Get logged-in customer from localStorage
+const customer = JSON.parse(localStorage.getItem('loggedInUser'));
+
+// Update profile link dynamically
+if(customer && customer.id) {
+    document.getElementById('profileLink').href = `/profile.html?customerId=${customer.id}`;
+} else {
+    document.getElementById('profileLink').href = "/login.html"; // fallback
+}

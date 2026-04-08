@@ -2,19 +2,31 @@
 <html>
 <head>
     <title>My Profile</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 
-<h2>My Profile</h2>
+<!-- Navbar -->
+<nav class="navbar">
+    <div class="navbar-left">
+        <a href="/customer.html">Home</a>
+        <a id="profileLink" href="#">Profile</a>
+    </div>
+    <div class="navbar-right">
+        <input type="text" id="searchInput" placeholder="Search...">
+    </div>
+</nav>
 
-<div id="userInfo" style="border:1px solid #ccc; padding:10px; margin-bottom:20px;">
-    <!-- User info will be loaded here -->
-</div>
-
+<h3>Account Details</h3>
+<div id="userInfo"></div>
 <h3>My Cart</h3>
 <div id="userCart" style="border:1px solid #ccc; padding:10px;"></div>
+
+
 <button onclick="logout()">Logout</button>
 
+<script src="js/common.js"></script>
 <script src="/js/profile.js"></script>
+
 </body>
 </html>

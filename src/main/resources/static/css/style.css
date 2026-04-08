@@ -1,0 +1,31 @@
+/* Navbar container */
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    border-bottom: 1px solid #ccc;
+    position: sticky;
+    top: 0;
+    background-color: #f8f8f8;
+    z-index: 1000;
+}
+
+/* Left side links */
+.navbar-left a {
+    margin-right: 20px;
+    text-decoration: none;
+    font-weight: bold;
+    color: #333;
+}
+
+.navbar-left a:hover {
+    color: #007bff;
+}
+
+/* Search input */
+.navbar-right input[type="text"] {
+    padding: 5px 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}

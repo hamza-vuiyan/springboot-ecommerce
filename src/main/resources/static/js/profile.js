@@ -1,17 +1,20 @@
+// profile.js
+
+// Logout function
 function logout() {
     localStorage.clear();
     window.location.href = "/index.html";
 }
 
+// Get logged-in user from localStorage
+const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
 
-// Get customerId from URL query parameter
-const urlParams = new URLSearchParams(window.location.search);
-const customerId = urlParams.get('customerId');
-
-if (!customerId) {
+if (!loggedInUser || !loggedInUser.id) {
     alert("No customer found. Please login.");
     window.location.href = "/index.html";
 }
+
+const customerId = loggedInUser.id;
 
 // Load user info
 function loadUserInfo() {
@@ -20,7 +23,11 @@ function loadUserInfo() {
             if (!res.ok) throw new Error("Failed to fetch user info");
             return res.json();
         })
-        .then(user => {
+        .then(data => {
+            // Adjust this depending on your API response
+            // If your API returns { "customer": { ... } }:
+            const user = data.customer || data;
+
             const container = document.getElementById("userInfo");
             container.innerHTML = `
                 <p><strong>Name:</strong> ${user.name}</p>
@@ -61,24 +68,28 @@ function loadUserCart() {
             });
 
             container.innerHTML += `<h4>Total Price: ${total} BDT</h4>`;
+        })
+        .catch(err => {
+            console.error(err);
+            alert("Failed to load cart items");
         });
 }
 
-
+// Remove item from cart
 function removeFromCart(cartItemId) {
     fetch(`/api/cart/remove/${cartItemId}`, {
         method: 'DELETE'
     })
         .then(res => {
             if (!res.ok) throw new Error("Failed to remove item from cart");
-            return res.text(); // your backend returns void, so text is fine
+            return res.text(); // backend returns void
         })
         .then(() => {
-            alert("Item removed from cart");
             loadUserCart(); // reload cart after removal
         })
         .catch(err => alert(err.message));
 }
+
 // Load data on page load
 loadUserInfo();
 loadUserCart();
