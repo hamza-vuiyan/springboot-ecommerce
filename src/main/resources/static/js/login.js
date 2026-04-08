@@ -17,8 +17,12 @@ function login() {
             localStorage.setItem("userId", data.id);
             localStorage.setItem("role", data.role);
 
-            if(data.role === "ADMIN") window.location.href = "/admin.html";
-            else window.location.href = "/customer.html";
+            if (data.role === "ADMIN") {
+                window.location.href = "/admin.html";
+            } else {
+                // append customerId in URL
+                window.location.href = `/customer.html?customerId=${data.id}`;
+            }
         })
         .catch(err => alert(err.message));
 }
