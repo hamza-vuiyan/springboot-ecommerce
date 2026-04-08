@@ -24,4 +24,9 @@ public class CustomerService {
         }
         return null;
     }
+
+    // CustomerService.java
+    public Customer getCustomerById(Long id) {
+        return customerRepository.findById(id).orElse(null);
+    }
 }
