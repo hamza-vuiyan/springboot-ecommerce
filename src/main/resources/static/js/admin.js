@@ -1,15 +1,17 @@
-let editProductId = null; // global variable
-const role = localStorage.getItem("role");
 
-if(role !== "ADMIN") {
-    alert("Access denied");
-    window.location.href = "/login.html";
+// Check if user is logged in
+const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+if (!loggedInUser || (loggedInUser.role !== "CUSTOMER" && loggedInUser.role !== "ADMIN")) {
+    alert("Please login first");
+    window.location.href = "/index.html";
 }
 
 function logout() {
     localStorage.clear();
-    window.location.href = "/login.html";
+    window.location.href = "/index.html";
 }
+
+let editProductId = null; // global variable
 
 function loadProducts() {
     fetch('/api/admin/products')

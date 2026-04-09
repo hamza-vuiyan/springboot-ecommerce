@@ -2,8 +2,6 @@ window.onload = function() {
     loadProducts("productList", true);
 };
 
-const role = localStorage.getItem("role");
-
 // Check if user is logged in
 const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
 if (!loggedInUser || (loggedInUser.role !== "CUSTOMER" && loggedInUser.role !== "ADMIN")) {
@@ -30,3 +28,4 @@ function addToCart(productId) {
         })
         .catch(err => alert(err.message));
 }
+
