@@ -1,4 +1,3 @@
-// profile.js
 
 // Logout function
 function logout() {
@@ -63,6 +62,7 @@ function loadUserCart() {
                         <p>Price: ${product.price}</p>
                         <p>Quantity: ${quantity}</p>
                         <button onclick="removeFromCart(${item.id})">Remove</button>
+                        <button onclick="buyProduct(${item.id}, ${product.id})">Buy</button>
                     </div>
                 `;
             });
@@ -88,6 +88,10 @@ function removeFromCart(cartItemId) {
             loadUserCart(); // reload cart after removal
         })
         .catch(err => alert(err.message));
+}
+
+function buyProduct(cartItemId, productId) {
+    window.location.href = `/checkout.html?cartItemId=${cartItemId}&productId=${productId}`;
 }
 
 // Load data on page load
