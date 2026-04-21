@@ -4,6 +4,23 @@ const productId = urlParams.get("productId");
 
 const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
 
+function loadProductInfo() {
+    fetch(`/api/products/${productId}`)
+        .then(res => res.json())
+        .then(product => {
+            const container = document.getElementById("productInfo");
+
+            container.innerHTML = `
+                <div style="border:1px solid black; padding:10px; margin-bottom:10px;">
+                    <img src="${product.imageUrl}" width="120"><br>
+                    <h3>${product.name}</h3>
+                    <p>Price: ${product.price} BDT</p>
+                    <p>Available Stock: ${product.stock}</p>
+                </div>
+            `;
+        });
+}
+
 function confirmPurchase() {
     const address = document.getElementById("address").value;
 
@@ -32,3 +49,5 @@ function confirmPurchase() {
         })
         .catch(err => alert(err.message));
 }
+
+loadProductInfo();
