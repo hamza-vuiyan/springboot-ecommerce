@@ -46,21 +46,22 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
     color: var(--primary-color);
-    font-weight: 600;
+    font-weight: 700;
     margin-bottom: 1rem;
 }
 
 .h1, .h2, .h3, .h4, .h5, .h6 {
-    font-weight: 600;
+    font-weight: 700;
+    color: var(--primary-color);
 }
 
 .section-title {
-    font-size: 1.25rem;
-    font-weight: 600;
+    font-size: 1.3rem;
+    font-weight: 700;
     color: var(--primary-color);
     margin-bottom: 1.5rem;
     padding-bottom: 0.75rem;
-    border-bottom: 2px solid var(--border-color);
+    border-bottom: 2px solid var(--primary-color);
 }
 
 .text-secondary {
@@ -102,26 +103,31 @@ h1, h2, h3, h4, h5, h6 {
    ======================================== */
 
 .form-label {
-    font-weight: 500;
+    font-weight: 600;
     color: var(--primary-color);
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
     font-size: 0.95rem;
+    display: block;
 }
 
 .form-control, .form-select {
-    border: 1px solid var(--border-color);
+    border: 1.5px solid var(--border-color);
     border-radius: 4px;
     font-size: 0.95rem;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    background-color: #ffffff;
+    color: var(--text-primary);
 }
 
 .form-control:focus, .form-select:focus {
     border-color: var(--primary-color);
     box-shadow: 0 0 0 3px rgba(44, 62, 80, 0.1);
+    background-color: #ffffff;
 }
 
 .form-control::placeholder {
     color: #aaa;
+    opacity: 0.8;
 }
 
 /* ========================================
@@ -153,8 +159,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn-outline-dark {
-    color: var(--primary-color);
-    border: 1px solid var(--primary-color);
+    color: white;
+    border: 1px solid black;
 }
 
 .btn-outline-dark:hover {
@@ -210,7 +216,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .nav-link {
-    color: #bdc3c7 !important;
+    color: #2491dc !important;
     font-weight: 500;
     margin: 0 0.5rem;
     transition: color 0.3s ease;
@@ -218,7 +224,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .nav-link:hover,
 .nav-link.active {
-    color: #ffffff !important;
+    color: #f86565 !important;
 }
 
 .navbar-toggler {
@@ -234,10 +240,11 @@ h1, h2, h3, h4, h5, h6 {
    ======================================== */
 
 .product-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)) !important;
     gap: 1.5rem;
     margin-top: 1rem;
+    width: 100%;
 }
 
 .product-card {
@@ -246,9 +253,10 @@ h1, h2, h3, h4, h5, h6 {
     overflow: hidden;
     background: #fff;
     transition: all 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100% !important;
+    min-width: 0;
 }
 
 .product-card:hover {
@@ -422,6 +430,7 @@ h1, h2, h3, h4, h5, h6 {
 
 table {
     font-size: 0.95rem;
+    color: var(--text-primary);
 }
 
 table thead {
@@ -429,16 +438,18 @@ table thead {
 }
 
 table thead th {
-    border-bottom: 2px solid var(--border-color);
+    border-bottom: 2px solid var(--primary-color);
     color: var(--primary-color);
-    font-weight: 600;
-    padding: 0.75rem;
+    font-weight: 700;
+    padding: 1rem 0.75rem;
+    background-color: #f0f2f5;
 }
 
 table tbody td {
     padding: 0.75rem;
     border-bottom: 1px solid var(--border-color);
     vertical-align: middle;
+    color: var(--text-primary);
 }
 
 table tbody tr:hover {
@@ -666,6 +677,13 @@ table img {
    RESPONSIVE
    ======================================== */
 
+@media (max-width: 1024px) {
+    .product-grid {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)) !important;
+        gap: 1rem;
+    }
+}
+
 @media (max-width: 768px) {
     .page-wrap {
         padding: 1rem 0 2rem;
@@ -678,12 +696,12 @@ table img {
     }
 
     .product-grid {
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)) !important;
         gap: 1rem;
     }
 
     .product-image {
-        height: 150px;
+        height: 120px;
     }
 
     .section-title {
@@ -729,7 +747,7 @@ table img {
 
 @media (max-width: 576px) {
     .product-grid {
-        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)) !important;
         gap: 0.75rem;
     }
 
@@ -754,5 +772,11 @@ table img {
     .footer-contact,
     .footer-hours {
         text-align: center;
+    }
+
+    table th,
+    table td {
+        padding: 0.5rem 0.25rem;
+        font-size: 0.75rem;
     }
 }

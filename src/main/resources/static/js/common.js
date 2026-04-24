@@ -84,6 +84,14 @@ function loadProducts(containerId, options = {}) {
 
             container.innerHTML = products.map(product => renderProductCard(product, showButton)).join("");
         })
+        .then(() => {
+            document.querySelectorAll("#productList .product-card").forEach(card => {
+                const title = card.querySelector("h5"); // adjust if different
+                if (title) {
+                    card.dataset.name = title.textContent.toLowerCase();
+                }
+            });
+        })
         .catch(error => {
             const container = document.getElementById(containerId);
             if (container) {

@@ -21,7 +21,11 @@
                 <li class="nav-item"><a class="nav-link" id="cartLink" href="/cart.html">Cart</a></li>
             </ul>
             <div class="d-flex gap-2">
-                <input class="form-control" type="search" id="searchInput" placeholder="Search products">
+                <input class="form-control"
+                       type="search"
+                       id="searchInput"
+                       placeholder="Search products"
+                       oninput="filterProducts()">
                 <button class="btn btn-outline-dark" onclick="logout()">Logout</button>
             </div>
         </div>
@@ -52,7 +56,7 @@
             <div class="col-md-3">
                 <h5>Contact Info</h5>
                 <div class="footer-contact">
-                    <p><strong>Office Address:</strong><br>123 Business Street, Commerce City, CC 12345</p>
+                    <p><strong>Office Address:</strong><br>JAMH, MBSTU, Santsoh, Tangail Sadar</p>
                     <p><strong>Telephone:</strong><br>+880 1234-567890</p>
                 </div>
             </div>
