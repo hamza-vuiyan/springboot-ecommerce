@@ -19,16 +19,14 @@ const customerId = loggedInUser ? loggedInUser.id : null;
 
 function filterProducts() {
     const keyword = document.getElementById("searchInput").value.trim().toLowerCase();
+
     document.querySelectorAll("#productList .product-card").forEach(card => {
-        const name = card.getAttribute("data-name") || "";
-        card.style.display = name.includes(keyword) ? "block" : "none";
+        const name = card.dataset.name || "";
+        card.style.display = name.includes(keyword) ? "" : "none";
     });
 }
 
 function addToCart(productId) {
-    const button = event.target;
-    setLoading(button, true);
-
     fetch(`/api/cart/add/${customerId}/${productId}?quantity=1`, {
         method: "POST"
     })
@@ -37,11 +35,7 @@ function addToCart(productId) {
             return res.json();
         })
         .then(() => {
-            setLoading(button, false);
             alert("Product added to cart.");
         })
-        .catch(err => {
-            setLoading(button, false);
-            alert(err.message);
-        });
+        .catch(err => alert(err.message));
 }
